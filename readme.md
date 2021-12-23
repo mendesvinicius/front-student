@@ -43,12 +43,12 @@ Install node https://nodejs.org/en/
 
 With the node already installed, go to the project root folder and execute the following commands:
 
-first step - install dependencies
+### 1º Install dependencies
 ```bash
 yarn install
 ```
 
-second step - run the application
+### 2º Run the application
 ```bash
 yarn start
 ```
