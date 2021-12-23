@@ -19,7 +19,7 @@ git clone https://github.com/ViniDevs/front-descomplica.git
 ###### Inside the project folder, change the .env.example file to .env
 
 
-#### º Mount the image and run
+#### 3º Mount the image and run
 ```bash
 docker-compose build
 ```
