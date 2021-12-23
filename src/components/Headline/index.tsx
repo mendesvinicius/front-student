@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { MdSearch } from "react-icons/md";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { IoMdRefresh } from "react-icons/io";
 import * as yup from "yup";
 import { Container } from "../";
 import { CustomHeadline, Search } from "./styles";
@@ -23,10 +24,7 @@ export default function Headline({ handleOpenModal, handleGetStudent, getAllStud
     resolver: yupResolver(schema),
   });
   const onSubmit = (data: StudentProps) => {
-    console.log(data.name)
-    setTimeout(() => {
-      handleGetStudent(data.name);
-    }, 200)
+    handleGetStudent(data.name);
   };
 
   return (
@@ -39,8 +37,11 @@ export default function Headline({ handleOpenModal, handleGetStudent, getAllStud
             <MdSearch size={18} />
             <input {...register("name")} />
           </form>
+          <button type='submit' onClick={getAllStudents}>
+            <IoMdRefresh size={18} />
+          </button>
         </Search>
-        <button type='submit' onClick={getAllStudents}>Limpar</button>
+
         <button onClick={handleOpenModal}>+ Add</button>
       </Container>
     </CustomHeadline>
