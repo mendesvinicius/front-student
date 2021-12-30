@@ -26,7 +26,6 @@ export default function FormCreateStudent({
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
   });
-  console.log(schema);
 
   const onSubmit = (data: StudentProps) => {
     handleCreateStudent(data.name, data.cpf, data.email);

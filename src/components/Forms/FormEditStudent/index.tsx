@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 export type FormEditStudentProps = {
-  studentInfo?: StudentProps;
+  studentInfo: StudentProps;
   handleCloseModal: () => void;
   handleUpdateStudent: (name: string, cpf: string, email: string, id: string) => void;
 };
@@ -23,15 +23,13 @@ export default function FormEditStudent({
   handleCloseModal,
   handleUpdateStudent
 }: FormEditStudentProps) {
-  console.log(studentInfo);
 
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = (data: StudentProps) => {
-    const id: any = studentInfo?.id;
-    handleUpdateStudent(data.name, data.cpf, data.email, id);
+    handleUpdateStudent(data.name, data.cpf, data.email, studentInfo.id);
     handleCloseModal();
   };
 

@@ -70,7 +70,6 @@ const handleUpdateStudent = (
   email: string,
   id: string
 ) => {
-  console.log(id);
     const mutation = gql`
       mutation updateStudent(
         $name: String!

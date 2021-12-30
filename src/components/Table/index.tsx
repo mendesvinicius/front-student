@@ -7,14 +7,19 @@ import { CustomTable, Section } from "./styles";
 import { Container, Modal, FormEditStudent } from "../../components";
 
 export type TableProps = {
-  students?: StudentProps[];
+  students: StudentProps[];
   handleUpdateStudent: (name: string, cpf: string, email: string, id:string) => void;
   handleDeleteStudent: (id: string) => void;
 };
 
 export default function Table({ students, handleDeleteStudent, handleUpdateStudent }: TableProps) {
   const [show, setShow] = useState<boolean>(false);
-  const [studentInfo, setStudentInfo] = useState<StudentProps>();
+  const [studentInfo, setStudentInfo] = useState<StudentProps>({
+    id: "",
+    name: "",
+    cpf: "",
+    email: "",
+});
 
   const handleOpenModal = () => {
     setShow(true);
@@ -30,7 +35,7 @@ export default function Table({ students, handleDeleteStudent, handleUpdateStude
         <CustomTable>
           <thead>
             <tr>
-              <th>Nome</th>
+              <th>Name</th>
               <th>CPF</th>
               <th>E-mail</th>
               <th>Actions</th>
@@ -38,7 +43,7 @@ export default function Table({ students, handleDeleteStudent, handleUpdateStude
           </thead>
 
           <tbody>
-            {students?.map((student: StudentProps) => (
+            {students.map((student: StudentProps) => (
               <tr key={student.email}>
                 <td>{student.name}</td>
                 <td>{student.cpf}</td>

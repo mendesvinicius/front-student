@@ -4,7 +4,9 @@ services:
 
   app:
     container_name: app_descomplica
-    build: .
+    build:
+        context: .
+        dockerfile: Dockerfile.dev
     entrypoint: .docker/entrypoint.sh
     volumes:
       - .:/app/
