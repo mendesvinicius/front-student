@@ -1,4 +1,4 @@
-import { StudentProps} from "../../../types";
+import { StudentProps } from "../../../types";
 import { Form } from "./styles";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -21,7 +21,7 @@ const schema = yup
 export default function FormEditStudent({
   studentInfo,
   handleCloseModal,
-  handleUpdateStudent
+  handleUpdateStudent,
 }: FormEditStudentProps) {
 
   const { register, handleSubmit, formState } = useForm({
@@ -40,11 +40,11 @@ export default function FormEditStudent({
           <h3>Update</h3>
         </div>
         <label>Name</label>
-      <input type="text" defaultValue={studentInfo?.name} {...register("name")}/>
-      <label>CPF {formState.errors.cpf && <span className="info_error">type cpf invalid</span>}</label>
-      <input type="text" defaultValue={studentInfo?.cpf} {...register("cpf")} />
-      <label>Email {formState.errors.email && <span className="info_error">type email invalid</span>}</label>
-      <input type="email" defaultValue={studentInfo?.email} {...register("email")}/>
+        <input type="text" defaultValue={studentInfo?.name} {...register("name")} />
+        <label>CPF {formState.errors.cpf && <span className="info_error">type cpf invalid</span>}</label>
+        <input type="text" defaultValue={studentInfo?.cpf} {...register("cpf")} />
+        <label>Email {formState.errors.email && <span className="info_error">type email invalid</span>}</label>
+        <input type="email" defaultValue={studentInfo?.email} {...register("email")} />
       </div>
       <div id="form_bottom">
         <button onClick={handleCloseModal}>Cancel</button>

@@ -7,5 +7,5 @@ ReactDOM.render(
     <GlobalStyle />
     <App />
   </>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );

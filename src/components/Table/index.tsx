@@ -8,7 +8,7 @@ import { Container, Modal, FormEditStudent } from "../../components";
 
 export type TableProps = {
   students: StudentProps[];
-  handleUpdateStudent: (name: string, cpf: string, email: string, id:string) => void;
+  handleUpdateStudent: (name: string, cpf: string, email: string, id: string) => void;
   handleDeleteStudent: (id: string) => void;
 };
 
@@ -19,7 +19,7 @@ export default function Table({ students, handleDeleteStudent, handleUpdateStude
     name: "",
     cpf: "",
     email: "",
-});
+  });
 
   const handleOpenModal = () => {
     setShow(true);

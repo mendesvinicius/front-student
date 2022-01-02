@@ -14,9 +14,9 @@ export default function App() {
     getAllStudents();
   }, []);
 
-// C -> Create student
-const handleCreateStudent = (name: string, cpf: string, email: string) => {
-  const mutation = gql`
+  // C -> Create student
+  const handleCreateStudent = (name: string, cpf: string, email: string) => {
+    const mutation = gql`
     mutation createStudent($name: String!, $cpf: String!, $email: String!) {
       createStudent(data: { name: $name, cpf: $cpf, email: $email }) {
         id
@@ -27,28 +27,28 @@ const handleCreateStudent = (name: string, cpf: string, email: string) => {
     }
   `;
 
-  const variables = {
-    name: name,
-    cpf: cpf,
-    email: email,
+    const variables = {
+      name: name,
+      cpf: cpf,
+      email: email,
+    };
+    graphCmsClient
+      .request(mutation, variables)
+      .then(() => {
+        showToast({ type: "success", message: "Student successfully added" });
+        getAllStudents();
+        handleCloseModal();
+      })
+      .catch(() =>
+        showToast({ type: "error", message: "Error, student was not created" }),
+      );
   };
-  graphCmsClient
-    .request(mutation, variables)
-    .then(() => {
-      showToast({ type: "success", message: "Student successfully added" });
-      getAllStudents();
-      handleCloseModal();
-    })
-    .catch(() =>
-      showToast({ type: "error", message: "Error, student was not created" })
-    );
-};
 
-// R -> Read all students
-const getAllStudents = () => {
-  graphCmsClient
-    .request(
-      gql`
+  // R -> Read all students
+  const getAllStudents = () => {
+    graphCmsClient
+      .request(
+        gql`
         query {
           readStudents {
             id
@@ -57,19 +57,19 @@ const getAllStudents = () => {
             email
           }
         }
-      `
-    )
-    .then((data) => setStudents(data.readStudents))
-    .catch((error) => console.log(error));
-};
+      `,
+      )
+      .then((data) => setStudents(data.readStudents))
+      .catch((error) => console.log(error));
+  };
 
-// U -> update student
-const handleUpdateStudent = (
-  name: string,
-  cpf: string,
-  email: string,
-  id: string
-) => {
+  // U -> update student
+  const handleUpdateStudent = (
+    name: string,
+    cpf: string,
+    email: string,
+    id: string,
+  ) => {
     const mutation = gql`
       mutation updateStudent(
         $name: String!
@@ -93,46 +93,46 @@ const handleUpdateStudent = (
       name: name,
       cpf: cpf,
       email: email,
-      id: id
+      id: id,
     };
 
-     graphCmsClient.request(mutation, variables)
-    .then(() => {
-      showToast({ type: "success", message: "student updated successfully" });
-      getAllStudents();
-      setShow(false);
-    })
-    .catch(() =>
-      showToast({ type: "error", message: "Error, student has not been updated" })
-    );
-  }
+    graphCmsClient.request(mutation, variables)
+      .then(() => {
+        showToast({ type: "success", message: "student updated successfully" });
+        getAllStudents();
+        setShow(false);
+      })
+      .catch(() =>
+        showToast({ type: "error", message: "Error, student has not been updated" }),
+      );
+  };
 
-// D - > delete a student
-const handleDeleteStudent = (id: string) => {
-  const mutation = gql`
+  // D - > delete a student
+  const handleDeleteStudent = (id: string) => {
+    const mutation = gql`
     mutation ($id: String!) {
       deleteStudent(id: $id)
     }
   `;
 
-  const variables = {
-    id: id,
+    const variables = {
+      id: id,
+    };
+
+    graphCmsClient
+      .request(mutation, variables)
+      .then(() => {
+        showToast({ type: "info", message: "Student successfully deleted" });
+        getAllStudents();
+      })
+      .catch(() =>
+        showToast({ type: "error", message: "Error, student was not deleted" }),
+      );
   };
 
-  graphCmsClient
-    .request(mutation, variables)
-    .then(() => {
-      showToast({ type: "info", message: "Student successfully deleted" });
-      getAllStudents();
-    })
-    .catch(() =>
-      showToast({ type: "error", message: "Error, student was not deleted" })
-    );
-};
-
-// Read a student by name
-const handleGetStudent = (name?: string) => {
-  const query = gql`
+  // Read a student by name
+  const handleGetStudent = (name?: string) => {
+    const query = gql`
     query getStudents($name: String!) {
       readStudents(student: { name: $name }) {
         id
@@ -143,44 +143,44 @@ const handleGetStudent = (name?: string) => {
     }
   `;
 
-  const variables = {
-    name: name,
+    const variables = {
+      name: name,
+    };
+    graphCmsClient
+      .request(query, variables)
+      .then((data) => setStudents(data.readStudents))
+      .catch((error) => console.log(error));
   };
-  graphCmsClient
-    .request(query, variables)
-    .then((data) => setStudents(data.readStudents))
-    .catch((error) => console.log(error));
-};
 
-const handleOpenModal = () => {
-  setShow(true);
-};
+  const handleOpenModal = () => {
+    setShow(true);
+  };
 
-const handleCloseModal = () => {
-  setShow(false);
-};
+  const handleCloseModal = () => {
+    setShow(false);
+  };
 
-return (
-  <main>
-    <Headline
-      getAllStudents={getAllStudents}
-      handleGetStudent={handleGetStudent}
-      handleOpenModal={handleOpenModal}
-    />
-
-    <Modal show={show}>
-      <FormCreateStudent
-        handleCloseModal={handleCloseModal}
-        handleCreateStudent={handleCreateStudent}
+  return (
+    <main>
+      <Headline
+        getAllStudents={getAllStudents}
+        handleGetStudent={handleGetStudent}
+        handleOpenModal={handleOpenModal}
       />
-    </Modal>
 
-    <Table
-      students={students}
-      handleUpdateStudent={handleUpdateStudent}
-      handleDeleteStudent={handleDeleteStudent}
-    />
-    <ToastAnimated />
-  </main>
-);
+      <Modal show={show}>
+        <FormCreateStudent
+          handleCloseModal={handleCloseModal}
+          handleCreateStudent={handleCreateStudent}
+        />
+      </Modal>
+
+      <Table
+        students={students}
+        handleUpdateStudent={handleUpdateStudent}
+        handleDeleteStudent={handleDeleteStudent}
+      />
+      <ToastAnimated />
+    </main>
+  );
 }
