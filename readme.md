@@ -42,6 +42,11 @@ docker build -t front-desc .
 docker run -p 3000:81 front-desc
 ```
 
+#### 3º Access the application
+```console
+http://localhost:3000
+```
+
 ## --Without Docker 📦
 
 Install node https://nodejs.org/en/
