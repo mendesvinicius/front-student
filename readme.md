@@ -15,28 +15,20 @@ To use this project it is necessary to perform the following steps:
 git clone https://github.com/ViniDevs/front-descomplica.git
 ```
 
-#### 2º Replace .env.example for .env:
-
-###### Inside the project folder, change the .env.example file to .env
-
-
-#### 3º Mount the image and run
+#### 2º Mount the image and run
 ```bash
 docker-compose build
 ```
 
-
-#### 4º Run the docker-compose
+#### 3º Run the docker-compose
 ```bash
 docker-compose up
 ```
 
-
-#### 5º Access the application
+#### 4º Access the application
 ```console
 http://localhost:3000
 ```
-
 
 ## --Without Docker 📦
 
