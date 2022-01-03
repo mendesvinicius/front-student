@@ -11,4 +11,4 @@ services:
     volumes:
       - .:/app/
     ports:
-      - "{$PORT}:{$PORT}"
+      - "3000:3000"
