@@ -1,5 +1,6 @@
 # Front-end Descomplica 
 
+#### https://app-descomplica.herokuapp.com/
 
 ## Prerequisites 📋 
 Commands for using docker in this project
@@ -40,6 +41,8 @@ http://localhost:3000
 ## --Without Docker 📦
 
 Install node https://nodejs.org/en/
+
+Install yarn https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable
 
 With the node already installed, go to the project root folder and execute the following commands:
 
