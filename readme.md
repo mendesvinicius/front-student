@@ -30,6 +30,18 @@ docker-compose up
 http://localhost:3000
 ```
 
+## To run an application version
+
+#### 1º Mount the image and run
+```bash
+docker build -t front-desc .
+```
+
+#### 2º Run the docker-compose
+```bash
+docker run -p 3000:81 front-desc
+```
+
 ## --Without Docker 📦
 
 Install node https://nodejs.org/en/
