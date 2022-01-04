@@ -15,7 +15,7 @@ To use this project it is necessary to perform the following steps:
 git clone https://github.com/ViniDevs/front-descomplica.git
 ```
 
-#### 2º Mount the image and run
+#### 2º Mount the image
 ```bash
 docker-compose build
 ```
@@ -32,12 +32,12 @@ http://localhost:3000
 
 ## To run an application version
 
-#### 1º Mount the image and run
+#### 1º Mount the image
 ```bash
 docker build -t front-desc .
 ```
 
-#### 2º Run the docker-compose
+#### 2º Run the image
 ```bash
 docker run -p 3000:81 front-desc
 ```
